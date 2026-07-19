@@ -1,5 +1,1 @@
-const prettierRules = require('./prettier');
-
-module.exports = {
-  prettierRules,
-};
+export { default as prettierRules } from './prettier.js';

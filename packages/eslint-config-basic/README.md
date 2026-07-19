@@ -1,19 +1,40 @@
 # @aurorafe/eslint-config-base
 
-aurorafe团队的基础eslint配置
+aurorafe 团队的基础 ESLint flat config。
+
+## 安装
+
+```bash
+pnpm add -D eslint@^10 prettier @aurorafe/eslint-config-base
+```
 
 ## 使用
 
-### 安装
+创建 `eslint.config.mjs`：
 
-```bash
-pnpm add -D eslint @aurorafe/eslint-config-base
+```js
+import { defineConfig } from 'eslint/config';
+import auroraBase from '@aurorafe/eslint-config-base';
+
+export default defineConfig([...auroraBase]);
 ```
 
-### 配置 eslint (.eslintrc | .eslintrc.js | .eslintrc.json)
+仅基础规则（不含 Prettier）：
 
-```json
-{
-  "extends": "@aurorafe/eslint-config-base"
-}
+```js
+import { defineConfig } from 'eslint/config';
+import base from '@aurorafe/eslint-config-base/base';
+
+export default defineConfig([...base]);
+```
+
+Prettier 选项可复用：
+
+```js
+import { prettierRules } from '@aurorafe/eslint-config-base/rules';
+
+/** @type {import('prettier').Config} */
+export default {
+  ...prettierRules,
+};
 ```

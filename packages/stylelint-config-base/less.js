@@ -1,5 +1,5 @@
-module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-recommended'],
+/** @type {import('stylelint').Config} */
+export default {
   plugins: ['stylelint-less'],
   rules: {
     'at-rule-no-unknown': null,

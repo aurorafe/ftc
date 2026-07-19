@@ -1,19 +1,18 @@
 # @aurorafe/eslint-config-vue
 
-Vue3的eslint配置
+Vue 3 的 ESLint flat config。
 
-## 使用
-
-### 安装
+## Install
 
 ```bash
-pnpm add -D eslint @aurorafe/eslint-config-vue
+pnpm add -D eslint@^10 @aurorafe/eslint-config-vue
 ```
 
-### 配置 eslint (.eslintrc | .eslintrc.js | .eslintrc.json)
+## Usage
 
-```json
-{
-  "extends": "@aurorafe/eslint-config-vue"
-}
+```js
+import { defineConfig } from 'eslint/config';
+import auroraVue from '@aurorafe/eslint-config-vue';
+
+export default defineConfig([...auroraVue]);
 ```

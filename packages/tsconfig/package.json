@@ -1,10 +1,14 @@
 {
   "name": "@aurorafe/tsconfig",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "aurorafe group ts base config",
-  "main": "index.js",
+  "main": "index.json",
+  "exports": {
+    ".": "./index.json",
+    "./index.json": "./index.json"
+  },
   "scripts": {
-    "test": "echo ok"
+    "test": "node -e \"JSON.parse(require('fs').readFileSync('index.json','utf8')); console.log('ok')\""
   },
   "repository": {
     "type": "git",
@@ -15,10 +19,16 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "tsconfig"
+  ],
   "author": "",
   "license": "MIT",
   "files": [
-    "config.json"
-  ]
+    "index.json"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  }
 }

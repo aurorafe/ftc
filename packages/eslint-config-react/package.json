@@ -1,8 +1,12 @@
 {
   "name": "@aurorafe/eslint-config-react",
-  "version": "1.1.0",
   "description": "aurorafe eslint config presets with react",
   "license": "MIT",
+  "type": "module",
+  "version": "2.0.0",
+  "exports": {
+    ".": "./index.js"
+  },
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -14,24 +18,27 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "lint": "eslint index.js",
-    "test": "eslint test/index.jsx --config=index.js"
+    "lint": "eslint -c index.js index.js",
+    "test": "eslint -c index.js test/index.jsx"
   },
   "dependencies": {
     "@aurorafe/eslint-config-base": "workspace:*",
     "@aurorafe/eslint-config-ts": "workspace:*",
-    "eslint-define-config": "^2.1.0",
-    "eslint-plugin-jest": "^27.9.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-unicorn": "^52.0.0",
-    "eslint-plugin-import": "^2.29.1"
+    "@eslint-react/eslint-plugin": "5.17.1",
+    "eslint-plugin-react-hooks": "7.1.1"
   },
   "peerDependencies": {
-    "eslint": ">=8.56.0"
+    "eslint": ">=9.22.0"
   },
   "devDependencies": {
-    "eslint": "^8.57.0"
-  }
+    "eslint": "10.7.0"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "react"
+  ]
 }

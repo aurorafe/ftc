@@ -1,20 +1,18 @@
 # @aurorafe/eslint-config-ts
 
-typescript的eslint配置
+TypeScript 的 ESLint flat config。
 
-### Install
+## Install
 
 ```bash
-pnpm add -D eslint @aurorafe/eslint-config-ts
+pnpm add -D eslint@^10 typescript @aurorafe/eslint-config-ts
 ```
 
 ## Usage
 
+```js
+import { defineConfig } from 'eslint/config';
+import auroraTs from '@aurorafe/eslint-config-ts';
 
-#### 配置 eslint (.eslintrc | .eslintrc.js | .eslintrc.json)
-
-```json
-{
-  "extends": "@aurorafe/eslint-config-ts"
-}
+export default defineConfig([...auroraTs]);
 ```

@@ -1,60 +1,60 @@
-const { defineConfig } = require('eslint-define-config');
+import { defineConfig } from 'eslint/config';
+import pluginVue from 'eslint-plugin-vue';
+import tseslint from 'typescript-eslint';
+import tsConfig from '@aurorafe/eslint-config-ts';
 
-module.exports = defineConfig({
-  root: true,
-  extends: ['plugin:vue/vue3-essential', '@vue/eslint-config-airbnb', '@aurorafe/eslint-config-ts'],
-  overrides: [
-    {
-      files: ['*.vue'],
-      parser: 'vue-eslint-parser',
+export default defineConfig(
+  ...tsConfig,
+  ...pluginVue.configs['flat/essential'],
+  {
+    name: 'aurorafe/vue',
+    files: ['**/*.vue'],
+    languageOptions: {
       parserOptions: {
-        parser: '@typescript-eslint/parser',
+        parser: tseslint.parser,
         extraFileExtensions: ['.vue'],
-      },
-      rules: {
-        'no-undef': 'off',
-        'vue/html-self-closing': 'off',
+        sourceType: 'module',
       },
     },
-    {
-      files: ['*.html'],
-      rules: {
-        'vue/comment-directive': 'off',
-      },
+    rules: {
+      'no-undef': 'off',
+      'vue/html-self-closing': 'off',
+      'vue/attributes-order': 'off',
+      'vue/multi-word-component-names': [
+        'off',
+        {
+          ignores: ['index'],
+        },
+      ],
+      'vue/no-v-model-argument': 'off',
+      'vue/first-attribute-linebreak': [
+        'error',
+        {
+          singleline: 'ignore',
+          multiline: 'below',
+        },
+      ],
+      'vue/singleline-html-element-content-newline': 'off',
+      'vue/multiline-html-element-content-newline': 'off',
+      'vue/component-definition-name-casing': ['error', 'PascalCase'],
+      'vue/no-v-html': 'off',
+      'vue/require-default-prop': 'off',
+      'vue/no-setup-props-destructure': 'off',
+      'vue/no-mutating-props': 'off',
+      'vue/v-on-event-hyphenation': [
+        'warn',
+        'always',
+        {
+          autofix: true,
+        },
+      ],
     },
-  ],
-  rules: {
-    'vue/attributes-order': 'off',
-    'vue/multi-word-component-names': [
-      'off',
-      {
-        ignores: ['index'],
-      },
-    ],
-    'vue/html-self-closing': 'off',
-    'vue/no-v-model-argument': 'off',
-    'vue/first-attribute-linebreak': [
-      'error',
-      {
-        singleline: 'ignore',
-        multiline: 'below',
-      },
-    ],
-    'vue/singleline-html-element-content-newline': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
-    'vue/component-definition-name-casing': ['error', 'PascalCase'],
-    'vue/no-v-html': 'off',
-    'vue/require-default-prop': 'off',
-    'vue/no-setup-props-destructure': 'off',
-
-    'vue/no-mutating-props': 'off',
-    'vue/v-on-event-hyphenation': [
-      'warn',
-      'always',
-      {
-        autofix: true
-      }
-    ],
-    'vue/script-setup-uses-vars': 'error'
-  }
-});
+  },
+  {
+    name: 'aurorafe/vue-html',
+    files: ['**/*.html'],
+    rules: {
+      'vue/comment-directive': 'off',
+    },
+  },
+);

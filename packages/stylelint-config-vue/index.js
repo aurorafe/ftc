@@ -1,8 +1,6 @@
-module.exports = {
-  extends: [
-    '@aurorafe/stylelint-config-base',
-    'stylelint-config-recommended-vue', // 必须要在最后一项, 因为其定义了customSyntax
-  ],
+/** @type {import('stylelint').Config} */
+export default {
+  extends: ['@aurorafe/stylelint-config-base', 'stylelint-config-recommended-vue'],
   overrides: [
     {
       files: '**/*.scss',

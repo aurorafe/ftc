@@ -1,20 +1,18 @@
 # @aurorafe/stylelint-config-vue
 
-stylelint配置
+Vue 的 Stylelint 配置。
 
-## 使用
-
-### 安装
+## Install
 
 ```bash
-pnpm add -D stylelint @aurorafe/stylelint-config-vue
+pnpm add -D stylelint@^17 @aurorafe/stylelint-config-vue
 ```
 
-### 配置 stylelint (.stylelintrc.js)
+## Usage
 
 ```js
-// .stylelintrc.js
-module.exports = {
-  extends: '@aurorafe/stylelint-config-vue'
-}
+/** @type {import('stylelint').Config} */
+export default {
+  extends: ['@aurorafe/stylelint-config-vue'],
+};
 ```

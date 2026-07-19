@@ -1,20 +1,20 @@
 # @aurorafe/stylelint-config-base
 
-stylelint配置
+Stylelint 基础配置（Stylelint 17 + standard）。
 
-## 使用
+格式相关规则交给 Prettier；本配置聚焦合法性与约定。
 
-### 安装
+## Install
 
 ```bash
-pnpm add -D stylelint @aurorafe/stylelint-config-base
+pnpm add -D stylelint@^17 @aurorafe/stylelint-config-base
 ```
 
-### 配置 stylelint (.stylelintrc.js)
+## Usage
 
 ```js
-// .stylelintrc.js
-module.exports = {
-  extends: require.resolve('@aurorafe/stylelint-config-base')
-}
+/** @type {import('stylelint').Config} */
+export default {
+  extends: ['@aurorafe/stylelint-config-base'],
+};
 ```

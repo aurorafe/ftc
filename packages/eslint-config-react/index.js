@@ -1,86 +1,61 @@
-const path = require('path');
-const fs = require('fs');
-const { defineConfig } = require('eslint-define-config');
+import fs from 'node:fs';
+import path from 'node:path';
+import { defineConfig } from 'eslint/config';
+import eslintReact from '@eslint-react/eslint-plugin';
+import reactHooks from 'eslint-plugin-react-hooks';
+import base from '@aurorafe/eslint-config-base';
+import tsConfig from '@aurorafe/eslint-config-ts';
 
-const isTsProject = fs.existsSync(path.join(process.cwd() || '.', './tsconfig.json'));
+const isTsProject = fs.existsSync(path.join(process.cwd(), 'tsconfig.json'));
 
-module.exports = defineConfig({
-  root: true,
-  extends: [
-    '@aurorafe/eslint-config-base',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-    'airbnb',
-  ],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  plugins: ['react', 'jest', 'react-hooks', 'eslint-plugin-import'],
-  rules: {
-    'react/display-name': 'off',
-    'react/jsx-props-no-spreading': 'off',
-    'react/state-in-constructor': 'off',
-    'react/static-property-placement': 'off',
-    // Too restrictive: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
-    'react/destructuring-assignment': 'off',
-    'react/jsx-filename-extension': 'off', // 关闭 jsx 文件后缀检测 ['warn', { extensions: ['.js', '.jsx', '.tsx'] }]
-    'react/no-array-index-key': 'warn',
-    'react-hooks/rules-of-hooks': 'error',
-    // 允许 hook 缺少依赖项
-    'react-hooks/exhaustive-deps': 'off',
-    'react/require-default-props': 'off',
-    'react/jsx-fragments': 'off',
-    'react/jsx-wrap-multilines': 'off',
-    'react/jsx-uses-react': 'warn',
-    'react/jsx-uses-vars': 'warn',
-    'react/prop-types': 'off',
-    'react/forbid-prop-types': 'off',
-    'react/sort-comp': 'off',
-    'react/react-in-jsx-scope': 'off',
-    // propTypes允许定义但不使用
-    'react/no-unused-prop-types': 'off',
-    // 限制 jsx 每行一个表达式
-    'react/jsx-one-expression-per-line': 'warn',
-    'react/function-component-definition': 'off',
-    'react/no-unstable-nested-components': ['warn', { allowAsProps: true }],
-    'jsx-a11y/anchor-is-valid': 'off',
-    // 有一些 event 的时候，不需要 role 属性，不需要其他解释
-    'jsx-a11y/no-static-element-interactions': 'off',
-    'jsx-a11y/click-events-have-key-events': 'off',
-    // jsx > 紧跟着属性
-    'react/jsx-closing-bracket-location': ['off', 'after-props'],
-
-    // 禁止标签自动 close
-    'react/self-closing-comp': 'off',
-    'react/jsx-key': 'warn',
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: isTsProject ? ['.js', '.jsx', '.ts', '.tsx', '.d.ts'] : ['.js', '.jsx'],
+export default defineConfig([
+  ...base,
+  {
+    name: 'aurorafe/react',
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    extends: [
+      isTsProject ? eslintReact.configs['recommended-typescript'] : eslintReact.configs.recommended,
+      reactHooks.configs.flat.recommended,
+    ],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
     },
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
+    settings: {
+      'import/resolver': {
+        node: {
+          extensions: isTsProject ? ['.js', '.jsx', '.ts', '.tsx', '.d.ts'] : ['.js', '.jsx'],
+        },
+      },
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
+      },
+      'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx', '.d.ts'],
+      'import/external-module-folders': ['node_modules', 'node_modules/@types'],
     },
-    'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx', '.d.ts'],
-    'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-    polyfills: ['fetch', 'Promise', 'URL', 'object-assign'],
-    react: {
-      version: 'detect',
+    rules: {
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'off',
+      '@eslint-react/no-missing-key': 'warn',
+      '@eslint-react/no-nested-component-definitions': 'warn',
     },
   },
-  overrides: isTsProject
+  ...(isTsProject
     ? [
         {
+          name: 'aurorafe/react-typescript',
           files: ['**/*.{ts,tsx}'],
-          parser: '@typescript-eslint/parser',
+          extends: [tsConfig],
           rules: {
-            // @link https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/TROUBLESHOOTING.md
             'no-undef': 'off',
-            'prettier/prettier': 'warn', // 不符合prettier规范的进行警告
+            'prettier/prettier': 'warn',
           },
-          extends: ['@aurorafe/eslint-config-ts'],
         },
       ]
-    : [],
-});
+    : []),
+]);

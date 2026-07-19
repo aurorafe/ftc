@@ -1,19 +1,20 @@
 # @aurorafe/eslint-config-react
 
-react的eslint配置
+React 的 ESLint flat config。
 
-## 使用
+基于 [`@eslint-react/eslint-plugin`](https://github.com/Rel1cx/eslint-react)（兼容 ESLint 10）与 `eslint-plugin-react-hooks`。
 
-### 安装
+## Install
 
 ```bash
-pnpm add -D eslint @aurorafe/eslint-config-react
+pnpm add -D eslint@^10 @aurorafe/eslint-config-react
 ```
 
-### 配置 eslint (.eslintrc | .eslintrc.js | .eslintrc.json)
+## Usage
 
-```json
-{
-  "extends": "@aurorafe/eslint-config-react"
-}
+```js
+import { defineConfig } from 'eslint/config';
+import auroraReact from '@aurorafe/eslint-config-react';
+
+export default defineConfig([...auroraReact]);
 ```

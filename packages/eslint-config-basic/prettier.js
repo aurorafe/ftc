@@ -1,12 +1,12 @@
-const { defineConfig } = require('eslint-define-config');
-const { rules: prettierRules } = require('eslint-config-prettier');
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import { defineConfig } from 'eslint/config';
 
-delete prettierRules['vue/html-self-closing'];
-
-module.exports = defineConfig({
-  plugins: ['prettier'],
-  rules: {
-    ...prettierRules,
-    'prettier/prettier': 'warn',
+export default defineConfig([
+  eslintPluginPrettierRecommended,
+  {
+    name: 'aurorafe/prettier',
+    rules: {
+      'prettier/prettier': 'warn',
+    },
   },
-});
+]);

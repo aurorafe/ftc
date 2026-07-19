@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "WebWorker"],
     "strict": true,
     "alwaysStrict": false,
     "noImplicitAny": false,
@@ -28,9 +29,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom", "dom.iterable", "webworker"],
     "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": false,
     "paths": {
       "~/*": ["./*"],
       "@/*": ["src/*"]

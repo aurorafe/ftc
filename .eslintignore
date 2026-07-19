@@ -1,7 +1,0 @@
-node_modules/
-**/*.spec.*
-**/style/
-*.html
-_site/
-dist/
-pnpm-lock.yaml

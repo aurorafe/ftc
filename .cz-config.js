@@ -6,5 +6,5 @@ const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
 
 module.exports = {
   ...config,
-  scopes: packages
+  scopes: packages,
 };
