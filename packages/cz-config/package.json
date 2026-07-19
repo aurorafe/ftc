@@ -1,6 +1,6 @@
 {
   "name": "@aurorafe/cz-config",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "commit lint 的基础配置",
   "license": "MIT",
   "main": "index.js",
