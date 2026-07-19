@@ -1,5 +1,16 @@
 # @aurorafe/eslint-config-ts
 
+## 3.0.0
+
+### Major Changes
+
+- [`8b08825`](https://github.com/aurorafe/ftc/commit/8b08825a5cbde87798d202d25a6a8b321dd456fc) Thanks [@sakitam-fdd](https://github.com/sakitam-fdd)! - 升级到最新版本
+
+### Patch Changes
+
+- Updated dependencies [[`8b08825`](https://github.com/aurorafe/ftc/commit/8b08825a5cbde87798d202d25a6a8b321dd456fc)]:
+  - @aurorafe/eslint-config-base@3.0.0
+
 ## 1.1.0
 
 ### Minor Changes
